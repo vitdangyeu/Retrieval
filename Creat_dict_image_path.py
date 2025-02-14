@@ -10,12 +10,12 @@ def key_to_image(data_path, json_path):
     # Create Dictionary
     dic = {}
     i = 0
-    list_car = sorted(os.listdir(data_path))  # Đảm bảo đúng thứ tự ảnh
+    list_car = sorted(os.listdir(data_path))  # 
     for type_car in tqdm(list_car):
         type_car_path = os.path.join(data_path, type_car)
         for car in sorted(os.listdir(type_car_path)):
             image_path = os.path.join(type_car_path, car)
-            result = image_path.split("Database/")[-1]  # Lấy phần sau "Keyframes_"
+            result = image_path.split("Database/")[-1]  # 
             dic[i] = result
             i += 1
 

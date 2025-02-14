@@ -43,7 +43,7 @@ def encode_text(text):
 
 # Return index
 def return_image_id(img_path = None, text = None):
-    k = 100 # Number of pictures
+    k = 10 # Number of pictures
     if img_path != None:
         image_feature = encode_image(img_path)
         D, I = index.search(image_feature, k)
@@ -54,26 +54,26 @@ def return_image_id(img_path = None, text = None):
     return I[0]
 
 # Test
-def show_image(total_images = 100, input_image=None, input_text = None):
+def show_image(total_images = 10, input_image=None, input_text = None):
     # Load dict file
     with open(dict_id2img_json, "r", encoding="utf-8") as f:
         dict_id2img = json.load(f)
 
-    # Số lượng ảnh hiển thị trên mỗi hàng
+    # 
     cols = 5
-    rows = (total_images+ cols - 1) // cols  # Tính số hàng
+    rows = (total_images+ cols - 1) // cols  # 
 
-    # Tạo figure để hiển thị ảnh
+    # 
     fig, axes = plt.subplots(rows, cols, figsize=(15, rows * 3))
-    axes = axes.flatten()  # Chuyển ma trận trục thành danh sách
+    axes = axes.flatten()  # 
 
     for i, id in enumerate(return_image_id(img_path=input_image, text=input_text)):
-        image = Image.open(os.path.join("./Database", dict_id2img[str(id)]))  # Mở ảnh
-        axes[i].imshow(image)  # Hiển thị ảnh
-        axes[i].axis("off")  # Ẩn trục
-        axes[i].set_title(f"Image {i+1}")  # Tiêu đề ảnh
+        image = Image.open(os.path.join("./Database", dict_id2img[str(id)]))  # 
+        axes[i].imshow(image) 
+        axes[i].axis("off")  
+        axes[i].set_title(f"Image {i+1}") 
 
-    # Ẩn các ô trống (nếu số ảnh < rows * cols)
+    # 
     for j in range(i + 1, len(axes)):
         axes[j].axis("off")
 
